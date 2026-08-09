@@ -7,6 +7,23 @@ burnout notices it while there is still time to cancel something.
 Not a mood tracker, not a habit tracker, not a diagnostic tool. Built from the
 handoff package in `docs/handoff/`.
 
+## Putting it on a phone
+
+Pushing to the default branch builds and publishes the app to GitHub Pages
+(`.github/workflows/deploy.yml`), at:
+
+**https://jeantydavid-cyber.github.io/Fallow/**
+
+Open that on the phone, then **Add to Home Screen** — Share → Add to Home
+Screen on iOS Safari, ⋮ menu → Add to Home screen / Install app on Android
+Chrome. It then opens full-screen from its own icon, with no browser chrome,
+and works with no signal (a service worker caches the app's own files).
+
+There is no app store build and no account. The data lives in the phone's
+browser storage and never leaves it, which also means: clearing site data for
+the domain erases it, and each device is separate. Settings → Export
+everything writes the JSON backup, which imports on another device.
+
 ## Stack
 
 - React + TypeScript + Vite, plain CSS custom properties (`src/styles/tokens.css` is the theme)
