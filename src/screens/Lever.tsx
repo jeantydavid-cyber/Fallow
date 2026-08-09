@@ -119,6 +119,7 @@ export function Lever() {
     <main className="screen">
       <BackRow onBack={() => nav('/')} />
       <h1 className="screen-title">{LEVER.title}</h1>
+      <p className="caption">{LEVER.lead}</p>
 
       <div className="stack">
         {items.map((item, i) => {
@@ -132,15 +133,22 @@ export function Lever() {
                 <span className="frow-sub">
                   {state?.kind === 'declined'
                     ? LEVER.declined
-                    : i === 0 && item.dayName
-                      ? LEVER.heaviest(item.dayName)
-                      : CATEGORY_NAMES[item.entry.category]}
+                    : state?.kind === 'half'
+                      ? LEVER.halved
+                      : i === 0 && item.dayName
+                        ? LEVER.heaviest(item.dayName)
+                        : CATEGORY_NAMES[item.entry.category]}
                 </span>
                 {i === 0 && !state && (
-                  <span className="lever-actions">
-                    <Button rank="secondary" onClick={() => decline(item)}>{LEVER.writeDecline}</Button>
-                    <Button rank="secondary" onClick={() => goForHalf(item)}>{LEVER.goForHalf}</Button>
-                  </span>
+                  <>
+                    <span className="lever-actions">
+                      <Button rank="secondary" onClick={() => decline(item)}>{LEVER.writeDecline}</Button>
+                      <Button rank="secondary" onClick={() => goForHalf(item)}>{LEVER.goForHalf}</Button>
+                    </span>
+                    <span className="frow-sub">
+                      {LEVER.writeDeclineHelp} {LEVER.goForHalfHelp}
+                    </span>
+                  </>
                 )}
                 {state && (
                   <span className="lever-actions">
@@ -161,6 +169,7 @@ export function Lever() {
             <span className="frow-main">
               <span className="frow-title row-title">{LEVER.freeDay(freeDay.dayName)}</span>
               <span className="frow-sub">{LEVER.freeDaySub}</span>
+              <span className="frow-sub">{LEVER.protectItHelp}</span>
             </span>
             <span className="frow-trailing">
               <Button rank="secondary" onClick={protect}>{LEVER.protectIt}</Button>
@@ -172,7 +181,7 @@ export function Lever() {
             <span className="frow-icon"><Icon name="unstructured" size={26} /></span>
             <span className="frow-main">
               <span className="frow-title row-title">{LEVER.protectedDay(freeDay.dayName)}</span>
-              <span className="frow-sub">{LEVER.protectedSub}</span>
+              <span className="frow-sub">{LEVER.protectedNote}</span>
             </span>
             <span className="frow-trailing">
               <Button rank="quiet" onClick={() => setProtectedDay(false)}>{LEVER.undo}</Button>

@@ -29,7 +29,7 @@ export const PAIRWISE_QUESTIONS: PairwiseQuestion[] = [
     aText: 'A friend cancels on the day and your plans fall apart',
     bText: 'A long journey to somewhere you have never been' },
   { kind: 'load', a: 'sensory', b: 'transition',
-    aText: 'A big supermarket on a Saturday — bright, loud, busy',
+    aText: 'A big supermarket on a Saturday: bright, loud, busy',
     bText: 'Home, then across town, then somewhere else, all in one day' },
   { kind: 'load', a: 'executive', b: 'unexpected_change',
     aText: 'A morning of forms, passwords, and decisions',

@@ -24,11 +24,11 @@ export const CATEGORY_MEANINGS: Record<string, string> = {
   masked_social: 'Time performing, monitoring yourself, or managing an impression.',
   unexpected_change: 'Plans altered, routine broken, something sprung on you.',
   sensory: 'Loud, bright, crowded, or unpredictable places.',
-  executive: 'Admin, forms, phone calls, decisions — anything hard to start.',
+  executive: 'Admin, forms, phone calls, decisions. Anything hard to start.',
   transition: 'Travel, new places, moving between one thing and the next.',
   conflict: 'An argument, a confrontation, or being misread or dismissed.',
   solitude: 'Genuinely alone, with nothing owed to anyone.',
-  sensory_relief: 'Deliberate quiet — dark, still, outdoors, headphones on.',
+  sensory_relief: 'Deliberate quiet: dark, still, outdoors, headphones on.',
   unmasked_time: "With people you don't perform around.",
   flow: 'Deep in something you chose, losing track of time.',
   unstructured: 'A day with nothing scheduled and nowhere to be.',
@@ -66,7 +66,7 @@ export const OBSERVATIONS = {
   droughtSince: (thing: string, month: string) => `Hardly any ${thing} since ${month}.`,
   collapse: (thing: string, month: string) => `No ${thing} since ${month}.`,
   collapseTop: (thing: string, month: string) =>
-    `No ${thing} since ${month} — it's what helps you most.`,
+    `No ${thing} since ${month}. It's what helps you most.`,
   deficit: (n: string) => `More going out than coming in, ${n} weeks now.`,
   steady: (thing: string) => `${thing[0].toUpperCase()}${thing.slice(1)} has held steady.`,
   lighter: (month: string) => `Lighter than ${month}.`,
@@ -91,13 +91,15 @@ export const HOME = {
 // §3 Check-in
 export const CHECKIN = {
   step1Title: 'Sound right?',
-  step1Help: 'From your calendar. Yes is enough — fix it only if something is off.',
-  unknownRow: (label: string) => `${label} — what was this?`,
+  step1Help: 'From your calendar. Yes is enough. Fix it only if something is off.',
+  unknownRow: (label: string) => `${label}: what was this?`,
   yes: 'Yes',
   fixIt: 'Fix it',
   next: 'Next',
   noCalendarTitle: 'What filled last week?',
-  noCalendarHelp: 'Anything that took energy — meetings, admin, travel, loud places.',
+  editTitle: 'What was in that week?',
+  editHelp: 'Change anything that is wrong. What you had before is still here.',
+  noCalendarHelp: 'Anything that took energy: meetings, admin, travel, loud places.',
   addSomething: 'Add something',
   addPickTitle: 'What kind of thing was it?',
   addedHelp: 'Roughly is fine. Nothing here has to be exact.',
@@ -137,22 +139,30 @@ export const EMPTY = {
 // §5 The lever
 export const LEVER = {
   title: 'Coming up',
+  // Nothing on this screen can touch a real calendar (access is read-only),
+  // so the screen says so rather than implying it cancelled anything.
+  lead: 'Your calendar stays as it is. These are notes to yourself, and they change the picture below.',
   heaviest: (day: string) => `${day} · the heaviest thing`,
   writeDecline: 'Write a decline',
+  writeDeclineHelp: 'Copies a message you can send yourself.',
   goForHalf: 'Go for half',
+  goForHalfHelp: 'Counts it as half the time.',
   protectIt: 'Protect it',
+  protectItHelp: 'Marks the day as one to keep clear.',
+  halved: 'Going for half. Counted as half the time.',
+  protectedNote: 'Kept clear. Counted as rest in the picture below.',
   undo: 'Undo',
-  freeDay: (day: string) => `${day} — nothing yet`,
+  freeDay: (day: string) => `${day}, nothing yet`,
   freeDaySub: 'A whole clear day',
-  protectedDay: (day: string) => `${day} — kept clear`,
+  protectedDay: (day: string) => `${day}, kept clear`,
   protectedSub: 'Kept clear',
   declined: 'Declined. Draft copied.',
   projection: (day: string) => `Protecting ${day} changes the picture.`,
   projectionFirstClear: (month: string) => `That's the first clear day since ${month}.`,
   drafts: {
-    work: "I'm not going to make this one — too much on that week. Happy to catch up on what I miss.",
+    work: "I'm not going to make this one. Too much on that week, but happy to catch up on what I miss.",
     half: "I'll come for the morning and head off after lunch.",
-    personal: "Going to sit this one out — I need a quiet weekend. Let's do something soon.",
+    personal: "Going to sit this one out. I need a quiet weekend, but let's do something soon.",
     noReason: "Can't make it this time. Hope it's a good one.",
     recurring: "Stepping back from these for a few weeks. I'll let you know when I'm back.",
   },
@@ -240,7 +250,7 @@ export const SUMMARY = {
   opening: (name: string, n: number) =>
     `This is a record of ${name}'s demands and rest over ${n} weeks, kept weekly. It isn't a diagnosis and wasn't produced by a clinician.`,
   closing:
-    'The three things tracked — exhaustion, things becoming harder, and reduced tolerance to noise, light, and people — come from community-based research into autistic burnout (Raymaker et al., 2020).',
+    'The three things tracked (exhaustion, things becoming harder, and reduced tolerance to noise, light, and people) come from community-based research into autistic burnout (Raymaker et al., 2020).',
 } as const;
 
 // Week detail
@@ -248,7 +258,7 @@ export const WEEK_DETAIL = {
   restFirst: 'Rest',
   demandsSecond: 'Demands',
   youSaid: 'You said',
-  changeSomething: 'Change something here',
+  changeSomething: 'Change this week',
   hours: (h: number) => `${h % 1 === 0 ? h : h.toFixed(1)}h`,
 } as const;
 

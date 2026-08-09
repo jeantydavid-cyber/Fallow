@@ -83,8 +83,13 @@ export function WeekDetail() {
             </section>
           )}
 
+          {/* This edits the week you are looking at. It used to open "Coming
+              up", which is about the weeks ahead — a different thing
+              entirely, and not what the label promises. */}
           <div className="centered">
-            <Button rank="secondary" onClick={() => nav('/lever')}>{WEEK_DETAIL.changeSomething}</Button>
+            <Button rank="secondary" onClick={() => nav(`/checkin/${weekId}`)}>
+              {WEEK_DETAIL.changeSomething}
+            </Button>
           </div>
         </>
       )}

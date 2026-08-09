@@ -32,16 +32,27 @@ export function CheckIn() {
     [weeks, weekId],
   );
 
+  // Revisiting a week already looked at: go straight to editing what is
+  // there, with the previous answers loaded, so nothing gets silently
+  // dropped by walking the flow again.
+  const editing = useRef(stored.checkIn !== 'none');
+
   // With no calendar there is nothing to confirm, so "Sound right? Yes / Fix
   // it" would be a question about an empty list. That case starts on the
   // add-what-you-remember screen instead (SCREENS.md §8).
-  const startedWithRows = useRef(stored.entries.some((e) => e.kind === 'load'));
+  const startedWithRows = useRef(!editing.current && stored.entries.some((e) => e.kind === 'load'));
   const [step, setStep] = useState<Step>(startedWithRows.current ? 'sound-right' : 'fix');
   const [entries, setEntries] = useState<Entry[]>(stored.entries);
-  const [emptiness, setEmptiness] = useState<MarkerValue | null>(null);
-  const [skillLoss, setSkillLoss] = useState<MarkerValue | null>(null);
-  const [stimulus, setStimulus] = useState<MarkerValue | null>(null);
-  const [helped, setHelped] = useState<Partial<Record<RecoveryCategory, number>>>({});
+  const [emptiness, setEmptiness] = useState<MarkerValue | null>(stored.markers?.emptiness ?? null);
+  const [skillLoss, setSkillLoss] = useState<MarkerValue | null>(stored.markers?.skillLoss ?? null);
+  const [stimulus, setStimulus] = useState<MarkerValue | null>(stored.markers?.stimulusTolerance ?? null);
+  const [helped, setHelped] = useState<Partial<Record<RecoveryCategory, number>>>(() =>
+    Object.fromEntries(
+      stored.entries
+        .filter((e) => e.kind === 'recovery' && e.hours > 0)
+        .map((e) => [e.category as RecoveryCategory, e.hours]),
+    ),
+  );
   const [classifying, setClassifying] = useState<string | null>(null);
   const [adding, setAdding] = useState(false);
 
@@ -88,7 +99,7 @@ export function CheckIn() {
       },
     };
     await saveWeek(week);
-    nav('/');
+    nav(editing.current ? `/week/${weekId}` : '/');
   };
 
   // The steps actually walked, so the dots count real screens rather than a
@@ -211,8 +222,14 @@ export function CheckIn() {
     return (
       <main className="screen">
         {header('fix')}
-        <h1 className="screen-title">{CHECKIN.noCalendarTitle}</h1>
-        <p className="caption">{loadEntries.length ? CHECKIN.addedHelp : CHECKIN.noCalendarHelp}</p>
+        <h1 className="screen-title">{editing.current ? CHECKIN.editTitle : CHECKIN.noCalendarTitle}</h1>
+        <p className="caption">
+          {editing.current
+            ? CHECKIN.editHelp
+            : loadEntries.length
+              ? CHECKIN.addedHelp
+              : CHECKIN.noCalendarHelp}
+        </p>
 
         <div className="stack">
           {loadEntries.map((e) => entryRow(e, true))}

@@ -94,7 +94,7 @@ export function Styleguide() {
         <Button rank="secondary" onClick={() => setNarrow((n) => !n)}>320px: {narrow ? 'on' : 'off'}</Button>
       </div>
 
-      <h2 className="row-title">Tokens — runtime-computed contrast ({settings.theme})</h2>
+      <h2 className="row-title">Tokens: runtime-computed contrast ({settings.theme})</h2>
       <div className="stack">
         {tokens.map((t) => (
           <div key={t.name} className="frow">
@@ -104,19 +104,19 @@ export function Styleguide() {
               <span className="frow-sub">{t.value} vs {t.vs}</span>
             </span>
             <span className="frow-trailing">
-              {t.ratio ? `${t.ratio.toFixed(1)}:1 ${t.ratio >= t.min ? '·' : '— under'} ${t.min}:1` : '—'}
+              {t.ratio ? `${t.ratio.toFixed(1)}:1 ${t.ratio >= t.min ? '·' : 'under'} ${t.min}:1` : '·'}
             </span>
           </div>
         ))}
       </div>
 
-      <h2 className="row-title">Chart — all seven column states</h2>
+      <h2 className="row-title">Chart: all seven column states</h2>
       <section className="card chart-card">
         <Chart columns={chartStates} maxRest={24} maxDemand={24} />
         <p className="caption">known · zero rest · not sure · skipped · projected · heavy · light</p>
       </section>
 
-      <h2 className="row-title">Icons — every glyph has a visible label</h2>
+      <h2 className="row-title">Icons: every glyph has a visible label</h2>
       <div className="tile-grid-4">
         {icons.map((name) => (
           <div key={name} className="tile" style={{ minHeight: 80 }}>
@@ -126,7 +126,7 @@ export function Styleguide() {
         ))}
       </div>
 
-      <h2 className="row-title">Icon tile — default / selected</h2>
+      <h2 className="row-title">Icon tile: default / selected</h2>
       <div className="tile-grid">
         {RECOVERY_CATEGORIES.slice(0, 2).map((cat, i) => (
           <IconTile
@@ -139,9 +139,9 @@ export function Styleguide() {
           />
         ))}
       </div>
-      <p className="caption">disabled / loading / error: does not exist — an unavailable answer is not rendered</p>
+      <p className="caption">disabled / loading / error: does not exist. An unavailable answer is not rendered</p>
 
-      <h2 className="row-title">Buttons — three ranks</h2>
+      <h2 className="row-title">Buttons: three ranks</h2>
       <div className="stack">
         <Button icon="check">{CHECKIN.yes}</Button>
         <Button rank="secondary">{CHECKIN.fixIt}</Button>
@@ -169,19 +169,19 @@ export function Styleguide() {
           <span className="frow-trailing"><WeightGlyph weight={3.6} /></span>
         </div>
         <div className="frow frow-guess">
-          <span className="frow-main"><span className="frow-title row-title">Thursday 7pm — what was this?</span></span>
+          <span className="frow-main"><span className="frow-title row-title">Thursday 7pm: what was this?</span></span>
         </div>
         <div className="frow frow-free">
           <span className="frow-icon"><Icon name="unstructured" size={26} /></span>
           <span className="frow-main">
-            <span className="frow-title row-title">Saturday — nothing yet</span>
+            <span className="frow-title row-title">Saturday, nothing yet</span>
             <span className="frow-sub">A whole clear day</span>
           </span>
         </div>
         <div className="frow frow-free frow-protected">
           <span className="frow-icon"><Icon name="unstructured" size={26} /></span>
           <span className="frow-main">
-            <span className="frow-title row-title">Saturday — kept clear</span>
+            <span className="frow-title row-title">Saturday, kept clear</span>
             <span className="frow-sub">Kept clear</span>
           </span>
         </div>

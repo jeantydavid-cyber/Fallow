@@ -43,7 +43,7 @@ export function PrintSummary() {
         <Button rank="secondary" onClick={() => window.print()}>Print</Button>
       </div>
 
-      <h1 className="screen-title">Fallow — weekly record</h1>
+      <h1 className="screen-title">Fallow: weekly record</h1>
       <p className="body-text">{SUMMARY.opening('this person', pastWeeks.length)}</p>
 
       {first && last && (
