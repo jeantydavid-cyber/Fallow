@@ -1,0 +1,460 @@
+{
+  "weeks": [
+    {
+      "id": "2026-W10",
+      "startDate": "2026-03-02",
+      "entries": [
+        {
+          "id": "fx-64",
+          "weekId": "2026-W10",
+          "kind": "load",
+          "category": "masked_social",
+          "hours": 8,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-65",
+          "weekId": "2026-W10",
+          "kind": "load",
+          "category": "executive",
+          "hours": 4,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-66",
+          "weekId": "2026-W10",
+          "kind": "recovery",
+          "category": "solitude",
+          "hours": 6,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-67",
+          "weekId": "2026-W10",
+          "kind": "recovery",
+          "category": "flow",
+          "hours": 5,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-68",
+          "weekId": "2026-W10",
+          "kind": "recovery",
+          "category": "sensory_relief",
+          "hours": 2,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        }
+      ],
+      "markers": {
+        "emptiness": 0,
+        "skillLoss": 0,
+        "stimulusTolerance": 1
+      },
+      "checkIn": "full",
+      "recoveryKnown": true
+    },
+    {
+      "id": "2026-W11",
+      "startDate": "2026-03-09",
+      "entries": [],
+      "markers": null,
+      "checkIn": "none",
+      "recoveryKnown": false
+    },
+    {
+      "id": "2026-W12",
+      "startDate": "2026-03-16",
+      "entries": [
+        {
+          "id": "fx-69",
+          "weekId": "2026-W12",
+          "kind": "load",
+          "category": "masked_social",
+          "hours": 8,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-70",
+          "weekId": "2026-W12",
+          "kind": "load",
+          "category": "executive",
+          "hours": 4,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-71",
+          "weekId": "2026-W12",
+          "kind": "recovery",
+          "category": "solitude",
+          "hours": 6,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-72",
+          "weekId": "2026-W12",
+          "kind": "recovery",
+          "category": "flow",
+          "hours": 5,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-73",
+          "weekId": "2026-W12",
+          "kind": "recovery",
+          "category": "sensory_relief",
+          "hours": 2,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        }
+      ],
+      "markers": {
+        "emptiness": 0,
+        "skillLoss": 0,
+        "stimulusTolerance": 1
+      },
+      "checkIn": "full",
+      "recoveryKnown": true
+    },
+    {
+      "id": "2026-W13",
+      "startDate": "2026-03-23",
+      "entries": [],
+      "markers": null,
+      "checkIn": "none",
+      "recoveryKnown": false
+    },
+    {
+      "id": "2026-W14",
+      "startDate": "2026-03-30",
+      "entries": [],
+      "markers": null,
+      "checkIn": "none",
+      "recoveryKnown": false
+    },
+    {
+      "id": "2026-W15",
+      "startDate": "2026-04-06",
+      "entries": [
+        {
+          "id": "fx-74",
+          "weekId": "2026-W15",
+          "kind": "load",
+          "category": "masked_social",
+          "hours": 8,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-75",
+          "weekId": "2026-W15",
+          "kind": "load",
+          "category": "executive",
+          "hours": 4,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-76",
+          "weekId": "2026-W15",
+          "kind": "recovery",
+          "category": "solitude",
+          "hours": 6,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-77",
+          "weekId": "2026-W15",
+          "kind": "recovery",
+          "category": "flow",
+          "hours": 5,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-78",
+          "weekId": "2026-W15",
+          "kind": "recovery",
+          "category": "sensory_relief",
+          "hours": 2,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        }
+      ],
+      "markers": {
+        "emptiness": 0,
+        "skillLoss": 0,
+        "stimulusTolerance": 1
+      },
+      "checkIn": "full",
+      "recoveryKnown": true
+    },
+    {
+      "id": "2026-W16",
+      "startDate": "2026-04-13",
+      "entries": [],
+      "markers": null,
+      "checkIn": "none",
+      "recoveryKnown": false
+    },
+    {
+      "id": "2026-W17",
+      "startDate": "2026-04-20",
+      "entries": [
+        {
+          "id": "fx-79",
+          "weekId": "2026-W17",
+          "kind": "load",
+          "category": "masked_social",
+          "hours": 8,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-80",
+          "weekId": "2026-W17",
+          "kind": "load",
+          "category": "executive",
+          "hours": 4,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-81",
+          "weekId": "2026-W17",
+          "kind": "recovery",
+          "category": "solitude",
+          "hours": 6,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-82",
+          "weekId": "2026-W17",
+          "kind": "recovery",
+          "category": "flow",
+          "hours": 5,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-83",
+          "weekId": "2026-W17",
+          "kind": "recovery",
+          "category": "sensory_relief",
+          "hours": 2,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        }
+      ],
+      "markers": {
+        "emptiness": 0,
+        "skillLoss": 0,
+        "stimulusTolerance": 1
+      },
+      "checkIn": "full",
+      "recoveryKnown": true
+    },
+    {
+      "id": "2026-W18",
+      "startDate": "2026-04-27",
+      "entries": [],
+      "markers": null,
+      "checkIn": "none",
+      "recoveryKnown": false
+    },
+    {
+      "id": "2026-W19",
+      "startDate": "2026-05-04",
+      "entries": [
+        {
+          "id": "fx-84",
+          "weekId": "2026-W19",
+          "kind": "load",
+          "category": "masked_social",
+          "hours": 8,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-85",
+          "weekId": "2026-W19",
+          "kind": "load",
+          "category": "executive",
+          "hours": 4,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-86",
+          "weekId": "2026-W19",
+          "kind": "recovery",
+          "category": "solitude",
+          "hours": 6,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-87",
+          "weekId": "2026-W19",
+          "kind": "recovery",
+          "category": "flow",
+          "hours": 5,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-88",
+          "weekId": "2026-W19",
+          "kind": "recovery",
+          "category": "sensory_relief",
+          "hours": 2,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        }
+      ],
+      "markers": {
+        "emptiness": 0,
+        "skillLoss": 0,
+        "stimulusTolerance": 1
+      },
+      "checkIn": "full",
+      "recoveryKnown": true
+    },
+    {
+      "id": "2026-W20",
+      "startDate": "2026-05-11",
+      "entries": [],
+      "markers": null,
+      "checkIn": "none",
+      "recoveryKnown": false
+    },
+    {
+      "id": "2026-W21",
+      "startDate": "2026-05-18",
+      "entries": [
+        {
+          "id": "fx-89",
+          "weekId": "2026-W21",
+          "kind": "load",
+          "category": "masked_social",
+          "hours": 8,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-90",
+          "weekId": "2026-W21",
+          "kind": "load",
+          "category": "executive",
+          "hours": 4,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-91",
+          "weekId": "2026-W21",
+          "kind": "recovery",
+          "category": "solitude",
+          "hours": 6,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-92",
+          "weekId": "2026-W21",
+          "kind": "recovery",
+          "category": "flow",
+          "hours": 5,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        },
+        {
+          "id": "fx-93",
+          "weekId": "2026-W21",
+          "kind": "recovery",
+          "category": "sensory_relief",
+          "hours": 2,
+          "label": null,
+          "source": "manual",
+          "sourceEventId": null,
+          "confirmed": true
+        }
+      ],
+      "markers": {
+        "emptiness": 0,
+        "skillLoss": 0,
+        "stimulusTolerance": 1
+      },
+      "checkIn": "full",
+      "recoveryKnown": true
+    }
+  ]
+}

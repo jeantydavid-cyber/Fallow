@@ -1,0 +1,136 @@
+/* Fallow base styles. Single column, warm, no shadows, radii ≤16px. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: 'Nunito', ui-rounded, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.screen {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (max-width: 320px) {
+  .screen { padding: 16px; }
+}
+@media (min-width: 1280px) {
+  .screen { padding: 64px 20px; }
+}
+
+h1, h2, h3, p { margin: 0; }
+
+.screen-title {
+  font-size: 24px;
+  line-height: 1.35;
+  font-weight: 800;
+  color: var(--heading);
+  text-wrap: pretty;
+}
+
+.statement {
+  font-size: 26px;
+  line-height: 1.4;
+  font-weight: 800;
+  color: var(--heading);
+  max-width: 16ch;
+  text-wrap: pretty;
+}
+
+.observation {
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: var(--heading);
+  max-width: 28ch;
+  text-wrap: pretty;
+}
+
+.row-title {
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 800;
+  color: var(--heading);
+}
+
+.body-text {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: var(--body);
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+.caption {
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.legend-text {
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+a { color: var(--moss-text); }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--moss);
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  padding: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

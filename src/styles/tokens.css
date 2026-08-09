@@ -1,0 +1,94 @@
+/* Fallow design tokens — DESIGN-TOKENS.md (v2 · warm & visual)
+   No #000, no #FFF, no red, no orange, anywhere. No --danger token exists.
+   All ratios in DESIGN-TOKENS.md §1 are measured against these exact values;
+   re-measure anything you change. */
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url('/fonts/nunito-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 200 1000;
+  font-display: swap;
+  src: url('/fonts/nunito-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  /* Light (default) */
+  --ground: #F7F1E3;
+  --card: #FBF6EA;
+  --card-selected: #F2EBD8;
+  --hairline: #E7DDC6;
+  --hairline-strong: #E0D5BC;
+  --ink: #423A2C;
+  --heading: #4E4636;
+  --body: #6E624E;
+  --muted: #75684F;
+  --moss: #5C6E42;
+  --moss-hover: #4E5F38;
+  --moss-pressed: #42502D;
+  --moss-bar: #6B7C4F;
+  --moss-deep: #4E5F38;
+  --moss-text: #42502D;
+  --moss-text-soft: #55613F;
+  --moss-dashed-border: #77875C;
+  --gold: #C0A557;
+  --gold-border: #94793A;
+  --sand-hatch: #9C8A5F;
+  --unknown: #8F8265;
+  --groundline: #97876A;
+  --cream-on-moss: #F7F1E3;
+  --dot-ahead: #D8CCAF;
+  --secondary-border: #CBBD9E;
+
+  /* Shape */
+  --r-screen: 16px;
+  --r-card: 14px;
+  --r-card-sm: 12px;
+  --r-bar: 6px;
+  --r-glyph: 4px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0, 0.2, 1);
+  --t-fast: 120ms;
+  --t-slow: 180ms;
+}
+
+[data-theme='dark'] {
+  --ground: #26221A;
+  --card: #2E2921;
+  --card-selected: #37311F;
+  --hairline: #3E3729;
+  --hairline-strong: #3E3729;
+  --ink: #EFE7D2;
+  --heading: #EFE7D2;
+  --body: #CFC3A8;
+  --muted: #B5A98F;
+  --moss: #8FA268;
+  --moss-hover: #9CB075;
+  --moss-pressed: #7E9159;
+  --moss-bar: #8FA268;
+  --moss-deep: #8FA268;
+  --moss-text: #CFC3A8;
+  --moss-text-soft: #B5A98F;
+  --moss-dashed-border: #8FA268;
+  --gold: #C0A557;
+  --gold-border: #D3B872;
+  --sand-hatch: #8A7A55;
+  --unknown: #8A7C5F;
+  --groundline: #8A7C5F;
+  --cream-on-moss: #26221A;
+  --dot-ahead: #4A4232;
+  --secondary-border: #4A4232;
+}
