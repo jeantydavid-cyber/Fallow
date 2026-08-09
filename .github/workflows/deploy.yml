@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Build and publish
 
 on:
   push:
@@ -6,9 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: pages
@@ -26,21 +24,21 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
-      # enablement lets the first run turn Pages on without a manual visit to
-      # the repository settings.
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      # Publish the built site to the gh-pages branch. GitHub Pages serves it
+      # once Pages is pointed at that branch; the build needs no Pages-specific
+      # permissions, so it works on a fresh repository.
+      - name: Publish to gh-pages
+        run: |
+          touch dist/.nojekyll   # Pages otherwise hides paths beginning with _
+          cd dist
+          git init -q
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Build from ${GITHUB_SHA}"
+          git push -q --force \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            HEAD:gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
