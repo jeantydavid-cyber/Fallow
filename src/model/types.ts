@@ -48,6 +48,10 @@ export interface Entry {
   /** 0 = Monday … 6 = Sunday. Presentation only (the lever names days);
       not part of the spec's derived math. */
   dayOfWeek?: number | null;
+  /** True only when the app has no idea what this event was, so the check-in
+      asks about it once. A confident-enough guess is shown AS a guess and
+      never interrogated — being asked about every row is exhausting. */
+  needsReview?: boolean;
 }
 
 export type MarkerValue = 0 | 1 | 2 | 3;

@@ -48,6 +48,19 @@ export function defaultWeights(now = 0): Weights {
   };
 }
 
+/** What a typical instance of each kind of rest is worth, in plain hours.
+    The check-in asks only whether something happened, not for how long: a
+    depleted person should not be dialling in numbers, and the drought signal
+    compares a week against the person's OWN median anyway, so a consistent
+    typical amount carries the same information as a measured one. */
+export const TYPICAL_RECOVERY_HOURS: Record<RecoveryCategory, number> = {
+  solitude: 4,
+  sensory_relief: 3,
+  unmasked_time: 4,
+  flow: 4,
+  unstructured: 10, // a whole day with nothing in it
+};
+
 /** Calibrated default recovery floor, used before 8 known weeks exist:
     a modest weekly recovery under the person's own weights. */
 export function calibratedDefaultFloor(weights: Weights): number {

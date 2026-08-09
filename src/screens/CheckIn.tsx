@@ -13,6 +13,7 @@ import { LOAD_CATEGORIES, RECOVERY_CATEGORIES } from '../model/types';
 import { emptyWeek } from '../model/checkin';
 import { useStore } from '../state/store';
 import { Button, FullnessScale, HoursStepper, IconTile, ProgressDots } from '../components/controls';
+import { TYPICAL_RECOVERY_HOURS } from '../model/weights';
 import { Icon, CATEGORY_ICONS } from '../components/Icon';
 import { normaliseTitle } from '../calendar/classify';
 
@@ -47,7 +48,9 @@ export function CheckIn() {
   if (!weekId) return null;
 
   const loadEntries = entries.filter((e) => e.kind === 'load');
-  const unconfirmed = loadEntries.filter((e) => !e.confirmed);
+  // Only rows the app genuinely cannot place become questions.
+  const unknownRows = loadEntries.filter((e) => e.needsReview);
+  const shownRows = loadEntries.filter((e) => !e.needsReview);
 
   const commitQuick = async () => {
     const week: Week = {
@@ -145,8 +148,8 @@ export function CheckIn() {
         <p className="caption">{CHECKIN.step1Help}</p>
 
         <div className="stack">
-          {loadEntries.filter((e) => e.confirmed).map((e) => entryRow(e, false))}
-          {unconfirmed.map((e) =>
+          {shownRows.map((e) => entryRow(e, false))}
+          {unknownRows.map((e) =>
             classifying === e.id ? (
               <div key={e.id} className="card">
                 <p className="body-text" style={{ marginBottom: 10 }}>{CHECKIN.unknownRow(e.label ?? '')}</p>
@@ -162,7 +165,7 @@ export function CheckIn() {
                         setEntries((prev) =>
                           prev.map((p) =>
                             p.id === e.id
-                              ? { ...p, category: cat, kind: (RECOVERY_CATEGORIES as string[]).includes(cat) ? 'recovery' : 'load', confirmed: true }
+                              ? { ...p, category: cat, kind: (RECOVERY_CATEGORIES as string[]).includes(cat) ? 'recovery' : 'load', confirmed: true, needsReview: false }
                               : p,
                           ),
                         );
@@ -337,18 +340,11 @@ export function CheckIn() {
                   setHelped((prev) => {
                     const next = { ...prev };
                     if (selected) delete next[cat];
-                    else next[cat] = cat === 'unstructured' ? 8 : 2;
+                    else next[cat] = TYPICAL_RECOVERY_HOURS[cat];
                     return next;
                   })
                 }
               />
-              {selected && (
-                <HoursStepper
-                  label={CHECKIN.stepper}
-                  value={helped[cat] ?? 1}
-                  onChange={(h) => setHelped((prev) => ({ ...prev, [cat]: h }))}
-                />
-              )}
             </div>
           );
         })}

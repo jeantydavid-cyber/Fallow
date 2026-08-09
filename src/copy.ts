@@ -220,6 +220,11 @@ export const SETTINGS_SCREEN = {
   importIcs: 'Import a calendar file',
   notificationsLabel: 'Notifications',
   notificationsNote: 'There are none. There never will be.',
+  tryItOut: 'Try it out',
+  loadExample: 'Load example weeks',
+  loadExampleNote:
+    'Twelve weeks of a made-up person, so you can see a full chart. This replaces anything already here.',
+  exampleLoaded: 'Example weeks loaded.',
   exportJson: 'Export everything',
   exportSummary: 'Print a summary',
   deleteAll: 'Delete everything',

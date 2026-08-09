@@ -28,9 +28,11 @@ const HEURISTICS: Heuristic[] = [
 export interface Classified {
   category: Category;
   kind: 'load' | 'recovery';
-  confident: boolean; // false → rendered as a guess, asked about in check-in
+  confident: boolean; // false → rendered as the app's guess until reviewed
   hours: number;
   ignored: boolean;
+  /** True only when nothing matched and the app genuinely does not know. */
+  needsReview?: boolean;
 }
 
 export function classifyEvent(event: IcsEvent, rules: TaughtRule[]): Classified {
@@ -46,16 +48,18 @@ export function classifyEvent(event: IcsEvent, rules: TaughtRule[]): Classified 
       confident: true,
       hours: rule.hours ?? eventHours(event),
       ignored: false,
+      needsReview: false,
     };
   }
   for (const h of HEURISTICS) {
     if (h.pattern.test(event.title)) {
       const kind = (RECOVERY_CATEGORIES as string[]).includes(h.category) ? 'recovery' : 'load';
-      return { category: h.category, kind, confident: false, hours: eventHours(event), ignored: false };
+      // A guess, shown as a guess — but not a question.
+      return { category: h.category, kind, confident: false, hours: eventHours(event), ignored: false, needsReview: false };
     }
   }
-  // Unfamiliar: default guess, low confidence — the check-in will ask once.
-  return { category: 'masked_social', kind: 'load', confident: false, hours: eventHours(event), ignored: false };
+  // Nothing matched: the check-in asks about this one, once.
+  return { category: 'masked_social', kind: 'load', confident: false, hours: eventHours(event), ignored: false, needsReview: true };
 }
 
 /** Turn calendar events into per-week guess entries, merged into existing
@@ -89,6 +93,7 @@ export function eventsToWeeks(
       sourceEventId: ev.uid,
       confirmed: c.confident,
       dayOfWeek: (ev.start.getDay() + 6) % 7,
+      needsReview: c.needsReview ?? false,
     };
     week.entries.push(entry);
     byId.set(weekId, week);

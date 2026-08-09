@@ -10,6 +10,8 @@ import { BackRow } from './Lever';
 import { parseIcs } from '../calendar/ics';
 import { eventsToWeeks } from '../calendar/classify';
 import { buildExport, downloadJson, parseExport } from '../model/export';
+import { demoWeeks } from '../model/demo';
+import { db } from '../db/db';
 
 export function SettingsScreen() {
   const nav = useNavigate();
@@ -106,6 +108,23 @@ export function SettingsScreen() {
       <section className="card stack">
         <p className="row-title">{WEIGHTS_SCREEN.title}</p>
         <Button rank="secondary" onClick={() => nav('/weights')}>{WEIGHTS_SCREEN.title}</Button>
+      </section>
+
+      <section className="card stack">
+        <p className="row-title">{SETTINGS_SCREEN.tryItOut}</p>
+        <p className="caption">{SETTINGS_SCREEN.loadExampleNote}</p>
+        <Button
+          rank="secondary"
+          onClick={async () => {
+            await importWeeks(demoWeeks(), 'replace');
+            // The example's last week is unreviewed on purpose; forget any
+            // earlier dismissal so the check-in card is there to try.
+            try { await db.kv.delete('dismissedWeek'); } catch { /* quiet */ }
+            nav('/');
+          }}
+        >
+          {SETTINGS_SCREEN.loadExample}
+        </Button>
       </section>
 
       <section className="card stack">
