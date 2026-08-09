@@ -102,7 +102,16 @@ export function Chart({ columns, maxRest, maxDemand, mini, onSelect }: ChartProp
 
   return (
     <div className={mini ? 'chart-mini' : undefined}>
-      <div className="chart" ref={listRef} role={onSelect ? undefined : 'img'} aria-label="Rest and demands by week">
+      {/* The frame keeps its full height even with no columns, so the horizon
+          line stays inside the chart. With no history the line alone is the
+          empty state (SCREENS.md §8) — it must never escape the card. */}
+      <div
+        className="chart"
+        ref={listRef}
+        style={{ height: above + 2 + below }}
+        role={onSelect ? undefined : 'img'}
+        aria-label="Rest and demands by week"
+      >
         {columns.map((c, i) => {
           const restH = Math.round((Math.min(c.rest, maxRest) / maxRest) * above);
           const ghostH = Math.round((Math.min(c.ghostRest, maxRest) / maxRest) * above);

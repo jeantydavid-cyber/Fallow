@@ -89,6 +89,9 @@ export function Onboarding() {
       <h1 className="screen-title">
         {q.kind === 'load' ? ONBOARDING.pairwiseLoad : ONBOARDING.pairwiseRecovery}
       </h1>
+      <p className="caption">
+        {q.kind === 'load' ? ONBOARDING.pairwiseHelpLoad : ONBOARDING.pairwiseHelpRecovery}
+      </p>
 
       <button type="button" className={`pair-card${q.kind === 'recovery' ? ' tile-recovery' : ''}`} onClick={() => answer('a')}>
         <Icon name={CATEGORY_ICONS[q.a]} size={44} />

@@ -11,7 +11,8 @@ import { readyWeekId } from '../model/checkin';
 import { Chart, chartScale, columnsFromWeeks } from '../components/Chart';
 import { Button } from '../components/controls';
 import { Icon } from '../components/Icon';
-import { EMPTY, HOME, SYSTEM } from '../copy';
+import { CATEGORY_NAMES, EMPTY, HOME, ONBOARDING, SYSTEM } from '../copy';
+import { rankedLoad } from '../model/weights';
 import { db } from '../db/db';
 import { monthNameOf, addWeeks, isoWeekId } from '../model/week';
 import { upcomingItems } from '../model/lever';
@@ -77,6 +78,7 @@ export function Home() {
 
       {storageBlocked && <p className="body-text">{SYSTEM.storageBlocked}</p>}
 
+      {knownCount === 0 && <p className="observation">{EMPTY.nothingYet}</p>}
       {firstRun && knownCount === 1 && (
         <p className="observation">{EMPTY.firstRun(monthNameOf(addWeeks(isoWeekId(new Date()), 8)))}</p>
       )}
@@ -84,6 +86,17 @@ export function Home() {
         <p className="observation">{EMPTY.returnAfterGap(monthNameOf(lastWeek.id))}</p>
       )}
       {!firstRun && gapWeeks < 4 && observation && <p className="observation">{observation}</p>}
+
+      {/* First run: the calibration finding restated (SCREENS.md §8) — the one
+          thing the app can offer before any history exists. */}
+      {firstRun && (
+        <section className="card lever-entry">
+          <p className="row-title">
+            {EMPTY.firstRunFinding(ONBOARDING.findingBare(CATEGORY_NAMES[rankedLoad(weights)[0]]))}
+          </p>
+          <Button rank="secondary" onClick={() => nav('/weights')}>{EMPTY.seeTheList}</Button>
+        </section>
+      )}
 
       {hasLever && (
         <section className="card lever-entry">
@@ -98,6 +111,7 @@ export function Home() {
         <section className="card checkin-card">
           <span className="checkin-card-icon"><Icon name="sun-ring" size={30} /></span>
           <p className="row-title">{HOME.checkInTitle}</p>
+          {knownCount === 0 && <p className="caption">{EMPTY.whenAWeekEnds}</p>}
           <Button onClick={() => nav(`/checkin/${ready}`)}>{HOME.look}</Button>
         </section>
       )}

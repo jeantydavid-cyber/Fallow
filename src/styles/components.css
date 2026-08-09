@@ -200,6 +200,8 @@ button.frow:hover { border-color: var(--moss-bar); }
   display: flex;
   align-items: stretch;
   gap: 6px;
+  /* Height is set inline from the geometry so an empty chart still holds its
+     frame and the horizon line stays inside the card. */
 }
 @media (max-width: 320px) {
   .chart { gap: 4px; }

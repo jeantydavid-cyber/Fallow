@@ -14,21 +14,48 @@ export interface PairwiseQuestion {
   bText: string;
 }
 
-// Concrete, everyday scenarios — the comparison is between lived situations,
-// not category names.
+// Concrete, everyday situations — the comparison is between things that
+// actually happen to a person, never between category names. Each side names
+// a real scene, roughly matched for length of time, so the only difference
+// being weighed is the kind of demand or the kind of rest.
 export const PAIRWISE_QUESTIONS: PairwiseQuestion[] = [
-  { kind: 'load', a: 'masked_social', b: 'sensory', aText: 'Three hours of meetings', bText: 'Three hours in a loud, crowded shop' },
-  { kind: 'load', a: 'masked_social', b: 'executive', aText: 'An afternoon at a work social', bText: 'An afternoon of forms and phone calls' },
-  { kind: 'load', a: 'unexpected_change', b: 'transition', aText: 'Plans changing at the last minute', bText: 'A day of travel somewhere new' },
-  { kind: 'load', a: 'sensory', b: 'transition', aText: 'A bright, noisy supermarket run', bText: 'Two changes of place in one day' },
-  { kind: 'load', a: 'executive', b: 'unexpected_change', aText: 'Sorting out admin all morning', bText: 'Something sprung on you mid-week' },
-  { kind: 'load', a: 'conflict', b: 'masked_social', aText: 'A disagreement that got tense', bText: 'A long dinner where you had to perform' },
-  { kind: 'load', a: 'conflict', b: 'sensory', aText: 'Being misread and having to explain', bText: 'A packed, noisy train ride' },
-  { kind: 'recovery', a: 'solitude', b: 'flow', aText: 'An evening completely alone', bText: 'An evening deep in your thing' },
-  { kind: 'recovery', a: 'sensory_relief', b: 'solitude', aText: 'A dark, quiet room for an hour', bText: 'An hour alone with nothing owed' },
-  { kind: 'recovery', a: 'unmasked_time', b: 'unstructured', aText: 'Time with someone easy to be around', bText: 'A day with nothing planned at all' },
-  { kind: 'recovery', a: 'flow', b: 'unstructured', aText: 'A whole afternoon of hyperfocus', bText: 'A slow day with no transitions' },
-  { kind: 'recovery', a: 'unmasked_time', b: 'sensory_relief', aText: 'Sitting quietly alongside a safe person', bText: 'Noise-cancelling and a dim room' },
+  { kind: 'load', a: 'masked_social', b: 'sensory',
+    aText: 'Three hours of back-to-back meetings',
+    bText: 'Three hours in a loud, crowded shopping centre' },
+  { kind: 'load', a: 'masked_social', b: 'executive',
+    aText: 'An afternoon at a work party, making conversation',
+    bText: 'An afternoon of paperwork and phone calls you keep putting off' },
+  { kind: 'load', a: 'unexpected_change', b: 'transition',
+    aText: 'A friend cancels on the day and your plans fall apart',
+    bText: 'A long journey to somewhere you have never been' },
+  { kind: 'load', a: 'sensory', b: 'transition',
+    aText: 'A big supermarket on a Saturday — bright, loud, busy',
+    bText: 'Home, then across town, then somewhere else, all in one day' },
+  { kind: 'load', a: 'executive', b: 'unexpected_change',
+    aText: 'A morning of forms, passwords, and decisions',
+    bText: 'Your week gets rearranged with no warning' },
+  { kind: 'load', a: 'conflict', b: 'masked_social',
+    aText: 'An argument with someone close that does not get resolved',
+    bText: 'A three-hour dinner where you have to be "on" the whole time' },
+  { kind: 'load', a: 'conflict', b: 'sensory',
+    aText: 'Someone takes what you said the wrong way and you have to explain yourself',
+    bText: 'A packed rush-hour train with no seat' },
+
+  { kind: 'recovery', a: 'solitude', b: 'flow',
+    aText: 'An evening completely on your own, nobody to answer to',
+    bText: 'An evening lost in something you love doing' },
+  { kind: 'recovery', a: 'sensory_relief', b: 'solitude',
+    aText: 'An hour in a dark, quiet room',
+    bText: 'An hour alone, with nothing you have to do afterwards' },
+  { kind: 'recovery', a: 'unmasked_time', b: 'unstructured',
+    aText: 'Time with the one person you never have to pretend around',
+    bText: 'A day with absolutely nothing in the diary' },
+  { kind: 'recovery', a: 'flow', b: 'unstructured',
+    aText: 'A whole afternoon on your favourite subject, losing track of time',
+    bText: 'A slow day at home, nowhere to be, no getting ready' },
+  { kind: 'recovery', a: 'unmasked_time', b: 'sensory_relief',
+    aText: 'Sitting in the same room as someone comfortable, both doing your own thing',
+    bText: 'Headphones on, lights low, nobody talking to you' },
 ];
 
 /** 'a' | 'b' | 'same' per question, in order. */

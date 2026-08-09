@@ -97,6 +97,9 @@ export const EMPTY = {
   firstRun: (month: string) => `One week in. Something to see around ${month}.`,
   firstRunFinding: (finding: string) => `${finding}. That much is already known.`,
   seeTheList: 'See the list',
+  // What a brand-new person sees before any week exists.
+  nothingYet: 'Nothing here yet. The chart fills in a week at a time.',
+  whenAWeekEnds: 'When a week ends, this is where you look back on it.',
   returnAfterGap: (month: string) => `The last week here is from ${month}.`,
   weekUnknown: 'Rest not recorded this week.',
   weekSkipped: 'Nothing recorded this week.',
@@ -157,6 +160,10 @@ export const ONBOARDING = {
   or: 'or',
   counter: (n: number, total: number) => `${n} / ${total}`,
   payoff: (thing: string) => `${thing} costs you more than anything else you do.`,
+  // Same finding without the full stop, for sentences that continue.
+  findingBare: (thing: string) => `${thing} costs you more than anything else you do`,
+  pairwiseHelpLoad: 'No right answers. Pick the one that would take more out of you.',
+  pairwiseHelpRecovery: 'No right answers. Pick the one that would leave you more restored.',
   payoffRecovery: (thing: string) => `${thing} fills you back up more than anything else.`,
   payoffRatio: (n: string, lowest: string) => `About ${n}× an hour of ${lowest}.`,
   saveAsPage: 'Save this as a page',
