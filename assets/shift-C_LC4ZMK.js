@@ -1,0 +1,1 @@
+import{i as e,n as t,r as n,t as r}from"./index-CfIi2qT0.js";function i(i){if(!i.length)return i;let a=n(i.map(e=>e.id)),o=a[a.length-1],s=r(t(new Date),-1),c=0,l=o;for(;l<s&&c<520;)l=r(l,1),c++;for(;l>s&&c>-520;)l=r(l,-1),c--;return i.map(t=>{let n=r(t.id,c);return{...t,id:n,startDate:e(n),entries:t.entries.map(e=>({...e,weekId:n}))}})}export{i as shiftToRecent};
