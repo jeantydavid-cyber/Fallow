@@ -88,6 +88,13 @@
   --icon-bg: var(--card-selected);
 }
 
+.tile-sub {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
 .tile .tile-icon { color: var(--body); }
 .tile.tile-recovery .tile-icon { color: var(--moss-deep); }
 

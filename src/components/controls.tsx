@@ -34,6 +34,9 @@ export function Button({ rank = 'primary', big, icon, onClick, disabled, childre
 interface IconTileProps {
   icon: ReactNode;
   label: string;
+  /** One plain line saying what this option covers, so the name never has to
+      carry the definition on its own. */
+  sub?: string;
   selected?: boolean;
   recovery?: boolean;
   wide?: boolean;
@@ -41,7 +44,7 @@ interface IconTileProps {
   onClick?: () => void;
 }
 
-export function IconTile({ icon, label, selected = false, recovery, wide, multi, onClick }: IconTileProps) {
+export function IconTile({ icon, label, sub, selected = false, recovery, wide, multi, onClick }: IconTileProps) {
   const pressedProps = multi ? { 'aria-pressed': selected } : { 'aria-checked': selected, role: 'radio' };
   return (
     <button
@@ -52,6 +55,7 @@ export function IconTile({ icon, label, selected = false, recovery, wide, multi,
     >
       <span className="tile-icon">{icon}</span>
       <span>{label}</span>
+      {sub && <span className="tile-sub">{sub}</span>}
     </button>
   );
 }

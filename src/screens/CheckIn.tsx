@@ -5,9 +5,9 @@
 // "Fix it") adds the three Raymaker markers and recovery entries, and only
 // "Done" sets recoveryKnown: true.
 
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { HOME, CHECKIN, CATEGORY_NAMES, RECOVERY_NAMES, WEEK_DETAIL } from '../copy';
+import { HOME, CHECKIN, CATEGORY_MEANINGS, CATEGORY_NAMES, RECOVERY_NAMES, WEEK_DETAIL } from '../copy';
 import type { Entry, MarkerValue, RecoveryCategory, Week } from '../model/types';
 import { LOAD_CATEGORIES, RECOVERY_CATEGORIES } from '../model/types';
 import { emptyWeek } from '../model/checkin';
@@ -31,7 +31,11 @@ export function CheckIn() {
     [weeks, weekId],
   );
 
-  const [step, setStep] = useState<Step>('sound-right');
+  // With no calendar there is nothing to confirm, so "Sound right? Yes / Fix
+  // it" would be a question about an empty list. That case starts on the
+  // add-what-you-remember screen instead (SCREENS.md §8).
+  const startedWithRows = useRef(stored.entries.some((e) => e.kind === 'load'));
+  const [step, setStep] = useState<Step>(startedWithRows.current ? 'sound-right' : 'fix');
   const [entries, setEntries] = useState<Entry[]>(stored.entries);
   const [emptiness, setEmptiness] = useState<MarkerValue | null>(null);
   const [skillLoss, setSkillLoss] = useState<MarkerValue | null>(null);
@@ -84,22 +88,32 @@ export function CheckIn() {
     nav('/');
   };
 
+  // The steps actually walked, so the dots count real screens rather than a
+  // fixed three that stops matching once the longer path opens.
+  const order: Step[] = startedWithRows.current
+    ? ['sound-right', 'fix', 'fullness', 'harder', 'noise', 'helped']
+    : ['fix', 'fullness', 'harder', 'noise', 'helped'];
+  const dotTotal = order.filter((s) => s !== 'sound-right').length;
+
   const back = () => {
-    const order: Step[] = ['sound-right', 'fix', 'fullness', 'harder', 'noise', 'helped'];
     const i = order.indexOf(step);
     if (i <= 0) nav('/');
     else setStep(order[i - 1]);
   };
 
-  const header = (dotStep: number | null) => (
-    <div className="checkin-header">
-      <button type="button" className="btn-quiet btn back-btn" onClick={back} aria-label={CHECKIN.back}>
-        <Icon name="chevron-left" size={22} />
-        <span>{CHECKIN.back}</span>
-      </button>
-      {dotStep !== null && <ProgressDots step={dotStep} total={3} />}
-    </div>
-  );
+  const header = (current: Step) => {
+    const dotted: Step[] = order.filter((s) => s !== 'sound-right');
+    const idx = dotted.indexOf(current);
+    return (
+      <div className="checkin-header">
+        <button type="button" className="btn-quiet btn back-btn" onClick={back} aria-label={CHECKIN.back}>
+          <Icon name="chevron-left" size={22} />
+          <span>{CHECKIN.back}</span>
+        </button>
+        {idx >= 0 && <ProgressDots step={idx} total={dotTotal} />}
+      </div>
+    );
+  };
 
   const entryRow = (e: Entry, editable: boolean) => (
     <div key={e.id} className={`frow${e.confirmed ? '' : ' frow-guess'}`}>
@@ -126,8 +140,9 @@ export function CheckIn() {
   if (step === 'sound-right') {
     return (
       <main className="screen">
-        {header(null)}
-        <h1 className="screen-title">{loadEntries.length ? CHECKIN.step1Title : CHECKIN.noCalendarTitle}</h1>
+        {header('sound-right')}
+        <h1 className="screen-title">{CHECKIN.step1Title}</h1>
+        <p className="caption">{CHECKIN.step1Help}</p>
 
         <div className="stack">
           {loadEntries.filter((e) => e.confirmed).map((e) => entryRow(e, false))}
@@ -141,6 +156,7 @@ export function CheckIn() {
                       key={cat}
                       icon={<Icon name={CATEGORY_ICONS[cat]} size={28} />}
                       label={CATEGORY_NAMES[cat]}
+                      sub={CATEGORY_MEANINGS[cat]}
                       recovery={(RECOVERY_CATEGORIES as string[]).includes(cat)}
                       onClick={() => {
                         setEntries((prev) =>
@@ -191,20 +207,23 @@ export function CheckIn() {
   if (step === 'fix') {
     return (
       <main className="screen">
-        {header(0)}
-        <h1 className="screen-title">{loadEntries.length ? CHECKIN.step1Title : CHECKIN.noCalendarTitle}</h1>
+        {header('fix')}
+        <h1 className="screen-title">{CHECKIN.noCalendarTitle}</h1>
+        <p className="caption">{loadEntries.length ? CHECKIN.addedHelp : CHECKIN.noCalendarHelp}</p>
 
         <div className="stack">
           {loadEntries.map((e) => entryRow(e, true))}
 
           {adding ? (
             <div className="card">
+              <p className="row-title" style={{ marginBottom: 10 }}>{CHECKIN.addPickTitle}</p>
               <div className="tile-grid">
                 {LOAD_CATEGORIES.map((cat) => (
                   <IconTile
                     key={cat}
                     icon={<Icon name={CATEGORY_ICONS[cat]} size={28} />}
                     label={CATEGORY_NAMES[cat]}
+                    sub={CATEGORY_MEANINGS[cat]}
                     onClick={() => {
                       setEntries((prev) => [
                         ...prev,
@@ -222,7 +241,7 @@ export function CheckIn() {
         </div>
 
         <div className="btn-pair">
-          <Button icon="check" onClick={() => setStep('fullness')}>{CHECKIN.yes}</Button>
+          <Button onClick={() => setStep('fullness')}>{CHECKIN.next}</Button>
         </div>
         <div className="centered">
           <Button rank="quiet" onClick={() => nav('/')}>{HOME.notThisWeek}</Button>
@@ -235,7 +254,8 @@ export function CheckIn() {
   if (step === 'fullness') {
     return (
       <main className="screen">
-        {header(1)}
+        {header('fullness')}
+        <p className="caption">{CHECKIN.markersLead}</p>
         <h1 className="screen-title">{CHECKIN.step2Title}</h1>
         <FullnessScale
           labels={CHECKIN.fullnessTiles}
@@ -253,7 +273,7 @@ export function CheckIn() {
   if (step === 'harder') {
     return (
       <main className="screen">
-        {header(1)}
+        {header('harder')}
         <h1 className="screen-title">{CHECKIN.harderTitle}</h1>
         <p className="body-text">{CHECKIN.harderSub}</p>
         <FullnessScale
@@ -272,7 +292,7 @@ export function CheckIn() {
   if (step === 'noise') {
     return (
       <main className="screen">
-        {header(1)}
+        {header('noise')}
         <h1 className="screen-title">{CHECKIN.noiseTitle}</h1>
         <FullnessScale
           labels={CHECKIN.noiseTiles}
@@ -298,8 +318,9 @@ export function CheckIn() {
 
   return (
     <main className="screen">
-      {header(2)}
+      {header('helped')}
       <h1 className="screen-title">{CHECKIN.step3Title}</h1>
+      <p className="caption">{CHECKIN.step3Help}</p>
       <div className="tile-grid">
         {helpedTiles.map(({ cat, wide }) => {
           const selected = helped[cat] !== undefined;
@@ -308,6 +329,7 @@ export function CheckIn() {
               <IconTile
                 icon={<Icon name={CATEGORY_ICONS[cat]} size={30} />}
                 label={cat === 'unstructured' ? 'A day with nothing in it' : RECOVERY_NAMES[cat]}
+                sub={CATEGORY_MEANINGS[cat]}
                 selected={selected}
                 recovery
                 multi

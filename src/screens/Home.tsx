@@ -11,7 +11,7 @@ import { readyWeekId } from '../model/checkin';
 import { Chart, chartScale, columnsFromWeeks } from '../components/Chart';
 import { Button } from '../components/controls';
 import { Icon } from '../components/Icon';
-import { CATEGORY_NAMES, EMPTY, HOME, ONBOARDING, SYSTEM } from '../copy';
+import { CATEGORY_MEANINGS, CATEGORY_NAMES, EMPTY, HOME, ONBOARDING, SYSTEM } from '../copy';
 import { rankedLoad } from '../model/weights';
 import { db } from '../db/db';
 import { monthNameOf, addWeeks, isoWeekId } from '../model/week';
@@ -94,6 +94,8 @@ export function Home() {
           <p className="row-title">
             {EMPTY.firstRunFinding(ONBOARDING.findingBare(CATEGORY_NAMES[rankedLoad(weights)[0]]))}
           </p>
+          <p className="caption">{CATEGORY_MEANINGS[rankedLoad(weights)[0]]}</p>
+          <p className="caption">{EMPTY.findingSource}</p>
           <Button rank="secondary" onClick={() => nav('/weights')}>{EMPTY.seeTheList}</Button>
         </section>
       )}

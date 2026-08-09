@@ -11,7 +11,27 @@ export const LOAD_NAMES: Record<LoadCategory, string> = {
   sensory: 'Loud & busy places',
   executive: 'Admin & decisions',
   transition: 'Travel',
-  conflict: 'Falling out',
+  // The deck called this "Falling out", which read as dialect and left people
+  // guessing. The category covers arguments, confrontation, and being misread
+  // or dismissed, so it says that.
+  conflict: 'Arguments & being misread',
+};
+
+/** One plain line saying what each kind of demand or rest actually covers.
+    Shown wherever a category is named on its own, so no name has to carry
+    the definition by itself. */
+export const CATEGORY_MEANINGS: Record<string, string> = {
+  masked_social: 'Time performing, monitoring yourself, or managing an impression.',
+  unexpected_change: 'Plans altered, routine broken, something sprung on you.',
+  sensory: 'Loud, bright, crowded, or unpredictable places.',
+  executive: 'Admin, forms, phone calls, decisions — anything hard to start.',
+  transition: 'Travel, new places, moving between one thing and the next.',
+  conflict: 'An argument, a confrontation, or being misread or dismissed.',
+  solitude: 'Genuinely alone, with nothing owed to anyone.',
+  sensory_relief: 'Deliberate quiet — dark, still, outdoors, headphones on.',
+  unmasked_time: "With people you don't perform around.",
+  flow: 'Deep in something you chose, losing track of time.',
+  unstructured: 'A day with nothing scheduled and nowhere to be.',
 };
 
 export const RECOVERY_NAMES: Record<RecoveryCategory, string> = {
@@ -62,7 +82,7 @@ export const HOME = {
   legendDemands: 'demands',
   legendNotSure: 'not sure',
   checkInTitle: 'How was last week?',
-  look: 'Look',
+  look: 'Look back',
   notThisWeek: 'Not this week',
   leverEntry: 'A couple of things could move.',
   leverAction: 'Have a look',
@@ -71,11 +91,17 @@ export const HOME = {
 // §3 Check-in
 export const CHECKIN = {
   step1Title: 'Sound right?',
+  step1Help: 'From your calendar. Yes is enough — fix it only if something is off.',
   unknownRow: (label: string) => `${label} — what was this?`,
   yes: 'Yes',
   fixIt: 'Fix it',
+  next: 'Next',
   noCalendarTitle: 'What filled last week?',
+  noCalendarHelp: 'Anything that took energy — meetings, admin, travel, loud places.',
   addSomething: 'Add something',
+  addPickTitle: 'What kind of thing was it?',
+  addedHelp: 'Roughly is fine. Nothing here has to be exact.',
+  markersLead: 'Three quick questions about how the week felt.',
   step2Title: 'Running on empty this week?',
   fullnessTiles: ['Not really', 'Some days', 'Most days', 'All week'],
   fullnessCaption: 'The circle is how full you felt.',
@@ -86,6 +112,7 @@ export const CHECKIN = {
   noiseTitle: 'How were noise, light, and people?',
   noiseTiles: ['Fine', 'Normal', 'Harder', 'Much harder'],
   step3Title: 'What helped?',
+  step3Help: 'The things that gave energy back. Pick any that happened.',
   stepper: 'Roughly how long?',
   done: 'Done',
   thatsIt: "That's it.",
@@ -100,6 +127,7 @@ export const EMPTY = {
   // What a brand-new person sees before any week exists.
   nothingYet: 'Nothing here yet. The chart fills in a week at a time.',
   whenAWeekEnds: 'When a week ends, this is where you look back on it.',
+  findingSource: 'From your setup answers. Your own weeks replace this.',
   returnAfterGap: (month: string) => `The last week here is from ${month}.`,
   weekUnknown: 'Rest not recorded this week.',
   weekSkipped: 'Nothing recorded this week.',

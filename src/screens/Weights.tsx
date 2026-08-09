@@ -4,7 +4,7 @@
 
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../state/store';
-import { CATEGORY_NAMES, ONBOARDING, WEIGHTS_SCREEN } from '../copy';
+import { CATEGORY_MEANINGS, CATEGORY_NAMES, ONBOARDING, WEIGHTS_SCREEN } from '../copy';
 import { rankedLoad, rankedRecovery, stepWeight } from '../model/weights';
 import { Icon, CATEGORY_ICONS } from '../components/Icon';
 import { WeightGlyph } from '../components/controls';
@@ -30,6 +30,7 @@ export function Weights() {
       <span className="frow-icon"><Icon name={CATEGORY_ICONS[cat]} size={26} /></span>
       <span className="frow-main">
         <span className="frow-title row-title">{CATEGORY_NAMES[cat]}</span>
+        <span className="frow-sub">{CATEGORY_MEANINGS[cat]}</span>
         <span className="frow-sub">
           {weights.pinned[cat] ? WEIGHTS_SCREEN.pinned : heaviest ? WEIGHTS_SCREEN.heaviest : ' '}
         </span>
