@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Button, FullnessScale, HoursStepper, IconTile, ProgressDots, WeightGlyph } from '../components/controls';
 import { Icon, CATEGORY_ICONS, type IconName } from '../components/Icon';
 import { Chart, type ChartColumn } from '../components/Chart';
-import { WeekScales } from '../components/Scale';
+import { BalanceView } from '../components/Balance';
 import { HOME, CATEGORY_NAMES, CHECKIN } from '../copy';
 import { LOAD_CATEGORIES, RECOVERY_CATEGORIES } from '../model/types';
 import { useStore } from '../state/store';
@@ -111,28 +111,21 @@ export function Styleguide() {
         ))}
       </div>
 
-      <h2 className="row-title">Scales: answered, unanswered, skipped</h2>
+      <h2 className="row-title">Scale: tipping, level, unweighed, skipped</h2>
       <section className="card chart-card">
-        <WeekScales
-          feeling={[
-            { weekId: 'w1', level: 3, skipped: false },
-            { weekId: 'w2', level: 2, skipped: false },
-            { weekId: 'w3', level: null, skipped: false },
-            { weekId: 'w4', level: 1, skipped: false },
-            { weekId: 'w5', level: null, skipped: true },
-            { weekId: 'w6', level: 0, skipped: false },
-          ]}
-          balance={[
-            { weekId: 'w1', value: 8, known: true, skipped: false },
+        <BalanceView
+          points={[
+            { weekId: 'w1', value: 9, known: true, skipped: false },
             { weekId: 'w2', value: 3, known: true, skipped: false },
-            { weekId: 'w3', value: 0, known: false, skipped: false },
-            { weekId: 'w4', value: -4, known: true, skipped: false },
+            { weekId: 'w3', value: 0, known: true, skipped: false },
+            { weekId: 'w4', value: 0, known: false, skipped: false },
             { weekId: 'w5', value: 0, known: false, skipped: true },
-            { weekId: 'w6', value: -9, known: true, skipped: false },
+            { weekId: 'w6', value: -5, known: true, skipped: false },
+            { weekId: 'w7', value: -9, known: true, skipped: false },
           ]}
           extent={9}
         />
-        <p className="caption">full · running low · not answered · skipped · empty</p>
+        <p className="caption">rest heavier · even · not weighed · skipped · demands heavier</p>
       </section>
 
       <h2 className="row-title">Chart: all seven column states</h2>

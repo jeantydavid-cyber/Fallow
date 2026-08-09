@@ -74,22 +74,27 @@ export const OBSERVATIONS = {
   busyButFine: 'Full weeks, but the time to yourself is still there.',
 } as const;
 
-// The scales on home. No numbers, no target: "full" is the top of the scale,
-// not somewhere you are supposed to be.
+// The scale on home: demands in one pan, rest in the other, the beam tilting
+// toward whichever weighed more. No numbers, no angle you are meant to be at.
 export const SCALE = {
+  panDemands: 'demands',
+  panRest: 'rest',
+  historyTitle: 'Week by week',
+  legendAnswered: 'weighed',
+  legendUnanswered: 'not weighed',
+  srCaption: 'Which way each week weighed',
+  srWhichWayHeader: 'Which way it tipped',
+  srDemandsHeavier: 'more going out than coming in',
+  srRestHeavier: 'more coming in than going out',
+  srEven: 'even',
+  srUnanswered: 'not weighed',
+  srSkipped: 'nothing recorded',
+  weekLabel: (weekId: string) => `Open the week of ${weekId}`,
+  // Kept for the week detail sentence about how the week felt.
   feelingTitle: 'How full you felt',
   feelingHigh: 'full',
   feelingLow: 'empty',
-  balanceTitle: 'Demands and rest',
-  balanceHigh: 'rest',
-  balanceLow: 'demands',
-  legendAnswered: 'answered',
-  legendUnanswered: 'not answered',
-  srCaption: 'How each week felt, and demands against rest',
   srLevels: ['running on empty all week', 'running low most days', 'running low some days', 'full'],
-  srUnanswered: 'not answered',
-  srSkipped: 'nothing recorded',
-  weekLabel: (weekId: string) => `Open the week of ${weekId}`,
 } as const;
 
 // §2 Home

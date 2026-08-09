@@ -92,3 +92,13 @@ describe('balance points', () => {
     expect(balancePoints(weeks, weights)[0].value).toBeGreaterThan(0);
   });
 });
+
+describe('tilt', () => {
+  it('clamps, so one enormous week cannot pin every other week to the stop', async () => {
+    const { tiltOf } = await import('../components/Balance');
+    expect(tiltOf(50, 10)).toBe(1);
+    expect(tiltOf(-50, 10)).toBe(-1);
+    expect(tiltOf(5, 10)).toBe(0.5);
+    expect(tiltOf(0, 10)).toBe(0);
+  });
+});

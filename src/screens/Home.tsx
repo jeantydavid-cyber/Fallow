@@ -2,11 +2,11 @@
 // dismissal. Nothing else, in that order, in every state: element order never
 // varies between sessions, only presence may change.
 //
-// The scales replaced the rest/demands bar chart. The bars showed what went
-// in and out of a week but never how the week landed on the person; the top
-// scale is their own answer to "Running on empty this week?", and the
-// quieter row underneath keeps the demands-against-rest story. That week's
-// bars now live on the week detail screen.
+// Home leads with a weighing scale: demands in one pan, rest in the other,
+// tipping toward whichever weighed more. The bar chart it replaced showed
+// the same quantities but asked the reader to compare two bar lengths; a
+// scale shows which way the week went at a glance, which is the whole
+// question. That week's bars now live on the week detail screen.
 
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -14,12 +14,12 @@ import { useStore } from '../state/store';
 import { detectSignal } from '../model/signals';
 import { observationText } from '../model/observations';
 import { readyWeekId } from '../model/checkin';
-import { WeekScales } from '../components/Scale';
+import { BalanceView } from '../components/Balance';
 import { Button } from '../components/controls';
 import { Icon } from '../components/Icon';
 import { CATEGORY_MEANINGS, CATEGORY_NAMES, EMPTY, HOME, ONBOARDING, SYSTEM } from '../copy';
 import { rankedLoad } from '../model/weights';
-import { balanceExtent, balancePoints, feelingPoints } from '../model/scale';
+import { balanceExtent, balancePoints } from '../model/scale';
 import { db } from '../db/db';
 import { monthNameOf, addWeeks, isoWeekId } from '../model/week';
 import { upcomingItems } from '../model/lever';
@@ -46,7 +46,6 @@ export function Home() {
 
   const signal = useMemo(() => detectSignal(pastWeeks, weights), [pastWeeks, weights]);
   const observation = useMemo(() => observationText(signal, weights), [signal, weights]);
-  const feeling = useMemo(() => feelingPoints(pastWeeks), [pastWeeks]);
   const balance = useMemo(() => balancePoints(pastWeeks, weights), [pastWeeks, weights]);
   const extent = useMemo(() => balanceExtent(balance), [balance]);
   const ready = readyWeekId(weeks);
@@ -76,9 +75,8 @@ export function Home() {
       </header>
 
       <section className="card chart-card">
-        <WeekScales
-          feeling={feeling}
-          balance={balance}
+        <BalanceView
+          points={balance}
           extent={extent}
           onSelect={(id) => nav(`/week/${id}`)}
         />

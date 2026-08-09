@@ -313,110 +313,62 @@ button.frow:hover { border-color: var(--moss-bar); }
 }
 .swatch-unknown { border: 2px dashed var(--unknown); background: none; }
 
-/* --- Scales (home) ---
-   Position carries the value; solid vs dashed carries answered vs not. Both
-   survive greyscale. No ticks, no numbers, no target mark. Unanswered weeks
-   sit in a lane below the scale, never at a height on it. */
+/* --- The weighing scale (home) ---
+   The tilt carries the meaning, so greyscale loses nothing. An unweighed
+   week shows an empty stand, never a level beam. */
 
-.scales { position: relative; }
+.balance-view { position: relative; }
 
-.scale-block + .scale-block { margin-top: 16px; }
-
-.scale-title { margin-bottom: 6px; }
-
-.scale-body {
-  display: flex;
-  align-items: stretch;
-  gap: 10px;
+.beam-big {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  height: auto;
 }
 
-.scale-gutter {
-  width: 62px;
-  flex-shrink: 0;
+.balance-pan-labels {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  padding-bottom: 20px; /* clears the unanswered lane */
+  max-width: 320px;
+  margin: 2px auto 0;
+  padding: 0 6px;
   color: var(--muted);
-  text-align: right;
 }
 
-.scale-plot {
-  position: relative;
+.balance-history-title {
+  margin-top: 16px;
+  margin-bottom: 6px;
+}
+
+.balance-history {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+}
+
+.balance-mini {
   flex: 1;
   min-width: 0;
-}
-
-.scale-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  pointer-events: none;
-}
-
-.scale-mark {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  margin-left: -7px;
-  margin-top: -7px;
-  border-radius: 50%;
-  background: var(--moss-bar);
-}
-.scale-mark-unknown {
-  width: 12px;
-  height: 12px;
-  margin-left: -6px;
-  margin-top: -6px;
-  background: none;
-  border: 2px dashed var(--unknown);
-}
-
-.scale-middle {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 2px;
-  margin-top: -1px;
-  background: var(--groundline);
-}
-
-.scale-tick {
-  position: absolute;
-  outline: 2px solid var(--card);
-  width: 12px;
-  height: 12px;
-  margin-left: -6px;
-  margin-top: -6px;
-  border-radius: var(--r-glyph);
-}
-.scale-tick-in { background: var(--moss-bar); }
-.scale-tick-out { background: var(--sand-hatch); }
-.scale-tick-unknown {
-  background: none;
-  border: 2px dashed var(--unknown);
-  border-radius: 50%;
-}
-
-.scale-hits {
-  position: absolute;
-  inset: 0;
-}
-.scale-hit {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  min-width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0;
   background: none;
   border: none;
   border-radius: 8px;
-  padding: 0;
 }
-.scale-hit:hover { background: var(--card-selected); }
+button.balance-mini { cursor: pointer; }
+button.balance-mini:hover { background: var(--card-selected); }
 
-@media (max-width: 360px) {
-  .scale-gutter { width: 52px; }
+.beam-mini { display: block; width: 100%; height: auto; max-width: 28px; }
+
+.balance-mini-empty {
+  display: block;
+  width: 100%;
+  height: 30px;
 }
 
 /* --- Week detail: that week's rest and demands --- */
