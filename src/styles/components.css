@@ -313,6 +313,149 @@ button.frow:hover { border-color: var(--moss-bar); }
 }
 .swatch-unknown { border: 2px dashed var(--unknown); background: none; }
 
+/* --- Scales (home) ---
+   Position carries the value; solid vs dashed carries answered vs not. Both
+   survive greyscale. No ticks, no numbers, no target mark. Unanswered weeks
+   sit in a lane below the scale, never at a height on it. */
+
+.scales { position: relative; }
+
+.scale-block + .scale-block { margin-top: 16px; }
+
+.scale-title { margin-bottom: 6px; }
+
+.scale-body {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.scale-gutter {
+  width: 62px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 20px; /* clears the unanswered lane */
+  color: var(--muted);
+  text-align: right;
+}
+
+.scale-plot {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.scale-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.scale-mark {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--moss-bar);
+}
+.scale-mark-unknown {
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  margin-top: -6px;
+  background: none;
+  border: 2px dashed var(--unknown);
+}
+
+.scale-middle {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  margin-top: -1px;
+  background: var(--groundline);
+}
+
+.scale-tick {
+  position: absolute;
+  outline: 2px solid var(--card);
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  margin-top: -6px;
+  border-radius: var(--r-glyph);
+}
+.scale-tick-in { background: var(--moss-bar); }
+.scale-tick-out { background: var(--sand-hatch); }
+.scale-tick-unknown {
+  background: none;
+  border: 2px dashed var(--unknown);
+  border-radius: 50%;
+}
+
+.scale-hits {
+  position: absolute;
+  inset: 0;
+}
+.scale-hit {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  min-width: 24px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+}
+.scale-hit:hover { background: var(--card-selected); }
+
+@media (max-width: 360px) {
+  .scale-gutter { width: 52px; }
+}
+
+/* --- Week detail: that week's rest and demands --- */
+
+.week-bars {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.week-bar-track {
+  flex: 1;
+  height: 18px;
+  display: flex;
+  align-items: center;
+}
+.week-bar-rest {
+  height: 18px;
+  background: var(--moss-bar);
+  border-radius: var(--r-glyph);
+  min-width: 3px;
+}
+.week-bar-demand {
+  height: 18px;
+  background: repeating-linear-gradient(45deg, var(--sand-hatch) 0 3px, transparent 3px 7px);
+  border: 1px solid var(--sand-hatch);
+  border-radius: var(--r-glyph);
+  min-width: 3px;
+}
+.week-bar-unknown {
+  height: 18px;
+  border: 2px dashed var(--unknown);
+  border-radius: var(--r-glyph);
+  flex: 1;
+}
+.week-bar-label {
+  width: 84px;
+  flex-shrink: 0;
+}
+
 /* --- Pairwise card --- */
 
 .pair-card {

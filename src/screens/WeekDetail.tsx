@@ -9,12 +9,13 @@ import { CATEGORY_NAMES, EMPTY, MARKER_SENTENCES, WEEK_DETAIL } from '../copy';
 import { Icon, CATEGORY_ICONS } from '../components/Icon';
 import { Button } from '../components/controls';
 import { BackRow } from './Lever';
-import { monthNameOf, weekStartDate } from '../model/week';
+import { deriveWeek, monthNameOf, weekStartDate } from '../model/week';
+import { chartScale } from '../components/Chart';
 
 export function WeekDetail() {
   const { weekId } = useParams();
   const nav = useNavigate();
-  const { weeks } = useStore();
+  const { weeks, weights } = useStore();
   const week = useMemo(() => weeks.find((w) => w.id === weekId), [weeks, weekId]);
 
   if (!weekId) return null;
@@ -23,6 +24,11 @@ export function WeekDetail() {
   const skipped = !week || (week.checkIn === 'none' && week.entries.length === 0);
   const rest = week?.entries.filter((e) => e.kind === 'recovery' && e.hours > 0) ?? [];
   const demands = week?.entries.filter((e) => e.kind === 'load' && e.hours > 0) ?? [];
+
+  const derived = week ? deriveWeek(week, weights) : null;
+  const scale = chartScale(weeks, weights);
+  const restWidth = derived ? Math.min(100, (derived.weightedRecovery / scale.maxRest) * 100) : 0;
+  const demandWidth = derived ? Math.min(100, (derived.weightedLoad / scale.maxDemand) * 100) : 0;
 
   const markerSentence = (() => {
     if (!week?.markers) return null;
@@ -44,6 +50,30 @@ export function WeekDetail() {
         <p className="body-text">{EMPTY.weekSkipped}</p>
       ) : (
         <>
+          {/* This week's rest and demands, in the same language the home
+              chart used: solid for rest, hatched for demands, dashed when
+              rest was never recorded. Lengths are against the person's own
+              biggest week, never a norm. */}
+          <section className="card stack">
+            <div className="week-bars">
+              <span className="week-bar-label caption">{WEEK_DETAIL.restFirst}</span>
+              <span className="week-bar-track">
+                {week!.recoveryKnown ? (
+                  <span className="week-bar-rest" style={{ width: `${restWidth}%` }} />
+                ) : (
+                  <span className="week-bar-unknown" />
+                )}
+              </span>
+            </div>
+            <div className="week-bars">
+              <span className="week-bar-label caption">{WEEK_DETAIL.demandsSecond}</span>
+              <span className="week-bar-track">
+                <span className="week-bar-demand" style={{ width: `${demandWidth}%` }} />
+              </span>
+            </div>
+            {!week!.recoveryKnown && <p className="caption">{EMPTY.weekUnknown}</p>}
+          </section>
+
           <section className="stack">
             <h2 className="row-title">{WEEK_DETAIL.restFirst}</h2>
             {week!.recoveryKnown ? (

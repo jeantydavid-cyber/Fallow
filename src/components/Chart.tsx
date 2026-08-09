@@ -161,7 +161,9 @@ export function Chart({ columns, maxRest, maxDemand, mini, onSelect }: ChartProp
         </div>
       )}
 
-      <table className="visually-hidden">
+      {/* Wrapped: a bare table ignores the 1px clip and widens the page. */}
+      <div className="visually-hidden">
+      <table>
         <caption>Rest and demands by week</caption>
         <thead>
           <tr><th>Week</th><th>Rest</th><th>Demands</th><th>Status</th></tr>
@@ -174,6 +176,7 @@ export function Chart({ columns, maxRest, maxDemand, mini, onSelect }: ChartProp
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 }

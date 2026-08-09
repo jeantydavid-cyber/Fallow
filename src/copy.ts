@@ -74,6 +74,24 @@ export const OBSERVATIONS = {
   busyButFine: 'Full weeks, but the time to yourself is still there.',
 } as const;
 
+// The scales on home. No numbers, no target: "full" is the top of the scale,
+// not somewhere you are supposed to be.
+export const SCALE = {
+  feelingTitle: 'How full you felt',
+  feelingHigh: 'full',
+  feelingLow: 'empty',
+  balanceTitle: 'Demands and rest',
+  balanceHigh: 'rest',
+  balanceLow: 'demands',
+  legendAnswered: 'answered',
+  legendUnanswered: 'not answered',
+  srCaption: 'How each week felt, and demands against rest',
+  srLevels: ['running on empty all week', 'running low most days', 'running low some days', 'full'],
+  srUnanswered: 'not answered',
+  srSkipped: 'nothing recorded',
+  weekLabel: (weekId: string) => `Open the week of ${weekId}`,
+} as const;
+
 // §2 Home
 export const HOME = {
   appName: 'Fallow',
