@@ -45,6 +45,9 @@ export interface Entry {
   source: 'calendar' | 'manual' | 'inferred';
   sourceEventId: string | null;
   confirmed: boolean; // false = app's guess, not yet reviewed
+  /** 0 = Monday … 6 = Sunday. Presentation only (the lever names days);
+      not part of the spec's derived math. */
+  dayOfWeek?: number | null;
 }
 
 export type MarkerValue = 0 | 1 | 2 | 3;

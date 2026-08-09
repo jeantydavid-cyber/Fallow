@@ -154,6 +154,7 @@ export const ONBOARDING = {
   pairwiseLoad: 'Which leaves you more wiped?',
   pairwiseRecovery: 'Which fills you back up more?',
   aboutTheSame: 'About the same',
+  or: 'or',
   counter: (n: number, total: number) => `${n} / ${total}`,
   payoff: (thing: string) => `${thing} costs you more than anything else you do.`,
   payoffRecovery: (thing: string) => `${thing} fills you back up more than anything else.`,
@@ -164,8 +165,8 @@ export const ONBOARDING = {
 
 export const WEIGHTS_SCREEN = {
   title: 'What costs you most',
-  lead: 'From your answers when you set up, and nothing else.',
   restores: 'What fills you back up',
+  heaviest: 'the heaviest thing',
   pinned: 'Set by you. Left alone.',
   refitTrace: (n: string, month: string) => `Was ${n} until ${month}.`,
   costsMore: 'Costs more',

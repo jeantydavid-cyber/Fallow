@@ -1,0 +1,132 @@
+/* Screen-level layout — SCREENS.md. Single column, fixed ordering. */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.stack-sm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-pair {
+  display: flex;
+  gap: 10px;
+}
+.btn-pair > * { flex: 1; }
+
+/* --- Home --- */
+
+.home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+}
+.home-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--heading);
+}
+.home-name {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.checkin-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  padding: 20px;
+}
+.checkin-card .btn { align-self: stretch; }
+.checkin-card-icon { color: var(--moss-deep); }
+
+.lever-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.app-footer {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 20px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Check-in --- */
+
+.checkin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+}
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 0;
+}
+
+.lever-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.lever-actions .btn { min-height: 48px; }
+
+.weight-step { font-size: 14px; padding: 8px 12px; }
+
+.day-tile { min-height: 56px; font-size: 14px; }
+
+/* --- Low-capacity mode --- */
+
+.low-capacity {
+  padding: 48px 28px 28px;
+  gap: 20px;
+  align-items: center;
+  text-align: center;
+}
+.low-capacity .statement { text-align: center; }
+.low-mark { color: var(--heading); }
+.low-soft {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--body);
+  max-width: 30ch;
+}
+.low-spacer { flex: 1; min-height: 24px; }
+.low-capacity .btn-primary { align-self: stretch; }
+
+/* --- Print --- */
+
+.print-page { gap: 20px; }
+@media print {
+  .no-print, .app-footer { display: none; }
+  .print-page { min-height: auto; }
+}
+
+/* --- Styleguide --- */
+
+.swatch-lg {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-glyph);
+  border: 1px solid var(--hairline-strong);
+  flex-shrink: 0;
+}

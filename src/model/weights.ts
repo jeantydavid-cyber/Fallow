@@ -4,7 +4,7 @@
 import type { LoadCategory, RecoveryCategory, Weights } from './types';
 import { LOAD_CATEGORIES, RECOVERY_CATEGORIES } from './types';
 
-export const GEOMETRIC_SCALE = [1.0, 1.4, 1.8, 2.3, 2.9, 3.6] as const;
+export const GEOMETRIC_SCALE: readonly number[] = [1.0, 1.4, 1.8, 2.3, 2.9, 3.6];
 export const SCALE_MIN = 1.0;
 export const SCALE_MAX = 3.6;
 

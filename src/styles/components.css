@@ -1,0 +1,369 @@
+/* Fallow components — COMPONENTS.md. Tap targets ≥48px, gaps ≥8px,
+   no shadows, radii ≤16px, selection = border + fill + label weight. */
+
+/* --- Button (three ranks) --- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--r-card-sm);
+  font-weight: 800;
+  font-size: 16px;
+  min-height: 48px;
+  padding: 10px 20px;
+  border: none;
+  transition: background-color var(--t-fast) var(--ease);
+}
+
+.btn-primary {
+  background: var(--moss);
+  color: var(--cream-on-moss);
+}
+.btn-primary:hover { background: var(--moss-hover); }
+.btn-primary:active { background: var(--moss-pressed); }
+
+.btn-primary.btn-big {
+  min-height: 60px;
+  font-size: 18px;
+  border-radius: var(--r-screen);
+}
+
+.btn-secondary {
+  background: var(--card-selected);
+  border: 1px solid var(--secondary-border);
+  color: var(--heading);
+}
+.btn-secondary:hover { border-color: var(--gold-border); }
+.btn-secondary:active { background: var(--card); }
+
+.btn-quiet {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 700;
+  min-height: 44px;
+  padding: 8px 12px;
+}
+.btn-quiet:hover { color: var(--heading); }
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* --- Icon tile --- */
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 96px;
+  padding: 12px 8px;
+  background: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  color: var(--body);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+  transition: background-color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+  --icon-bg: var(--card);
+}
+.tile:hover { border-color: var(--moss-bar); }
+.tile:active { background: var(--card-selected); }
+
+.tile[aria-pressed='true'],
+.tile[aria-checked='true'] {
+  border: 2.5px solid var(--gold-border);
+  padding: 10.5px 6.5px;
+  background: var(--card-selected);
+  color: var(--heading);
+  font-weight: 800;
+  --icon-bg: var(--card-selected);
+}
+
+.tile .tile-icon { color: var(--body); }
+.tile.tile-recovery .tile-icon { color: var(--moss-deep); }
+
+.tile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.tile-grid .tile-wide { grid-column: 1 / -1; }
+.tile-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+@media (max-width: 340px) {
+  .tile-grid-4 { grid-template-columns: 1fr 1fr; }
+}
+
+/* --- Row --- */
+
+.frow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 10px 14px;
+  background: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  text-align: left;
+  width: 100%;
+  color: inherit;
+  --icon-bg: var(--card);
+}
+.frow .frow-icon { color: var(--body); flex-shrink: 0; }
+.frow.frow-recovery .frow-icon { color: var(--moss-deep); }
+.frow .frow-main { flex: 1; min-width: 0; }
+.frow .frow-sub {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  display: block;
+}
+.frow .frow-trailing {
+  flex-shrink: 0;
+  color: var(--muted);
+  font-weight: 800;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+button.frow { cursor: pointer; transition: border-color var(--t-fast) var(--ease); }
+button.frow:hover { border-color: var(--moss-bar); }
+
+.frow-guess { border-style: dashed; border-width: 2px; border-color: var(--unknown); padding: 9px 13px; }
+
+.frow-free {
+  border: 2px dashed var(--moss-dashed-border);
+  padding: 9px 13px;
+  color: var(--moss-text);
+}
+.frow-free .frow-sub { color: var(--moss-text-soft); }
+
+.frow-protected {
+  border: 2.5px solid var(--moss-bar);
+  border-style: solid;
+  padding: 8.5px 12.5px;
+}
+
+.frow-declined { opacity: 0.55; }
+.frow-declined .frow-title { text-decoration: line-through; }
+
+/* --- Weight glyph: three tiny bars of rising height --- */
+
+.weight-glyph {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 16px;
+}
+.weight-glyph span {
+  width: 4px;
+  border-radius: 2px;
+  background: var(--hairline-strong);
+}
+.weight-glyph span.on { background: var(--moss-bar); }
+.weight-glyph span:nth-child(1) { height: 6px; }
+.weight-glyph span:nth-child(2) { height: 11px; }
+.weight-glyph span:nth-child(3) { height: 16px; }
+
+/* --- Progress dots --- */
+
+.dots { display: flex; gap: 8px; }
+.dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--dot-ahead);
+}
+.dots span.done { background: var(--moss); }
+
+/* --- Chart --- */
+
+.chart-card { padding: 16px 16px 12px; }
+
+.chart {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+}
+@media (max-width: 320px) {
+  .chart { gap: 4px; }
+}
+
+.chart-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-radius: 4px;
+}
+.chart-col:hover,
+.chart-col:focus-visible { background: var(--card-selected); }
+
+.chart-above {
+  height: 64px;
+  display: flex;
+  align-items: flex-end;
+}
+.chart-below {
+  height: 56px;
+  display: flex;
+  align-items: flex-start;
+}
+.chart-spacer { height: 2px; }
+
+.chart-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 64px;
+  height: 2px;
+  background: var(--groundline);
+  pointer-events: none;
+}
+
+.bar-rest {
+  width: 100%;
+  background: var(--moss-bar);
+  border-radius: var(--r-bar) var(--r-bar) 0 0;
+}
+.bar-demand {
+  width: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--sand-hatch) 0 3px,
+    transparent 3px 7px
+  );
+  border-radius: 0 0 var(--r-bar) var(--r-bar);
+}
+.bar-unknown {
+  width: 100%;
+  border: 2px dashed var(--unknown);
+  border-bottom: none;
+  border-radius: var(--r-bar) var(--r-bar) 0 0;
+  background: none;
+}
+.bar-projected-rest {
+  width: 100%;
+  border: 2px dashed var(--moss-bar);
+  border-bottom: none;
+  border-radius: var(--r-bar) var(--r-bar) 0 0;
+  background: none;
+}
+.bar-projected-demand {
+  width: 100%;
+  border: 2px dashed var(--sand-hatch);
+  border-top: none;
+  border-radius: 0 0 var(--r-bar) var(--r-bar);
+  background: none;
+}
+
+.chart-mini .chart-above { height: 26px; }
+.chart-mini .chart-below { height: 27px; }
+.chart-mini .chart-line { top: 26px; }
+.chart-mini .chart { gap: 5px; }
+.chart-mini .bar-rest,
+.chart-mini .bar-projected-rest { border-radius: 3px 3px 0 0; }
+.chart-mini .bar-demand,
+.chart-mini .bar-projected-demand { border-radius: 0 0 3px 3px; }
+
+.chart-legend {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+.chart-legend .legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.chart-legend .swatch {
+  width: 14px;
+  height: 10px;
+  border-radius: var(--r-glyph);
+}
+.swatch-rest { background: var(--moss-bar); }
+.swatch-demand {
+  background: repeating-linear-gradient(45deg, var(--sand-hatch) 0 2px, transparent 2px 5px);
+}
+.swatch-unknown { border: 2px dashed var(--unknown); background: none; }
+
+/* --- Pairwise card --- */
+
+.pair-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 150px;
+  width: 100%;
+  padding: 20px;
+  background: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-screen);
+  color: var(--heading);
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.4;
+  text-align: center;
+  transition: background-color var(--t-fast) var(--ease);
+  --icon-bg: var(--card);
+}
+.pair-card:hover { border-color: var(--moss-bar); }
+.pair-card:active { background: var(--card-selected); }
+.pair-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+.pair-divider::before,
+.pair-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--hairline-strong);
+}
+
+/* --- Stepper --- */
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.stepper button {
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: var(--r-card-sm);
+  border: 1px solid var(--secondary-border);
+  background: var(--card-selected);
+  color: var(--heading);
+  font-size: 18px;
+  font-weight: 800;
+}
+.stepper .stepper-value {
+  min-width: 44px;
+  text-align: center;
+  font-weight: 800;
+  color: var(--heading);
+}
